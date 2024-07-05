@@ -7,12 +7,12 @@ package ui
 
 import (
 	"fmt"
-	"runtime"
+	"log"
 	"runtime/debug"
 	"time"
 
-	"github.com/lxn/walk"
-	"github.com/lxn/win"
+	"github.com/tailscale/walk"
+	"github.com/tailscale/win"
 	"golang.org/x/sys/windows"
 
 	"github.com/amnezia-vpn/amneziawg-windows-client/l18n"
@@ -28,7 +28,6 @@ var (
 )
 
 func RunUI() {
-	runtime.LockOSThread()
 	windows.SetProcessPriorityBoost(windows.CurrentProcess(), false)
 	defer func() {
 		if err := recover(); err != nil {
@@ -38,10 +37,16 @@ func RunUI() {
 	}()
 
 	var (
+		app  *walk.Application
 		err  error
 		mtw  *ManageTunnelsWindow
 		tray *Tray
 	)
+
+	app, err = walk.InitApp()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	for mtw == nil {
 		mtw, err = NewManageTunnelsWindow()
@@ -71,7 +76,8 @@ func RunUI() {
 		win.ShowWindow(mtw.Handle(), win.SW_MINIMIZE)
 	}
 
-	mtw.Run()
+	app.Run()
+	//mtw.Run()
 	if tray != nil {
 		tray.Dispose()
 	}

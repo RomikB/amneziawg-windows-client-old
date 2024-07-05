@@ -9,7 +9,7 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/lxn/win"
+	"github.com/tailscale/win"
 	"golang.org/x/sys/windows"
 
 	"github.com/amnezia-vpn/amneziawg-windows-client/l18n"

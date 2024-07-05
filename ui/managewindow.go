@@ -6,11 +6,10 @@
 package ui
 
 import (
-	"sync"
 	"unsafe"
 
-	"github.com/lxn/walk"
-	"github.com/lxn/win"
+	"github.com/tailscale/walk"
+	"github.com/tailscale/win"
 	"golang.org/x/sys/windows"
 
 	"github.com/amnezia-vpn/amneziawg-windows-client/l18n"
@@ -35,16 +34,14 @@ const (
 
 var taskbarButtonCreatedMsg uint32
 
-var initedManageTunnels sync.Once
+func init() {
+	walk.AppendToWalkInit(func() {
+		walk.MustRegisterWindowClass(manageWindowWindowClass)
+		taskbarButtonCreatedMsg = win.RegisterWindowMessage(windows.StringToUTF16Ptr("TaskbarButtonCreated"))
+	})
+}
 
 func NewManageTunnelsWindow() (*ManageTunnelsWindow, error) {
-	initedManageTunnels.Do(func() {
-		walk.AppendToWalkInit(func() {
-			walk.MustRegisterWindowClass(manageWindowWindowClass)
-			taskbarButtonCreatedMsg = win.RegisterWindowMessage(windows.StringToUTF16Ptr("TaskbarButtonCreated"))
-		})
-	})
-
 	var err error
 	var disposables walk.Disposables
 	defer disposables.Treat()

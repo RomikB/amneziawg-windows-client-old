@@ -15,7 +15,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/lxn/walk"
+	"github.com/tailscale/walk"
 
 	"github.com/amnezia-vpn/amneziawg-windows-client/l18n"
 	"github.com/amnezia-vpn/amneziawg-windows-client/manager"

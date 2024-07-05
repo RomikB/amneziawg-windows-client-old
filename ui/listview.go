@@ -9,12 +9,12 @@ import (
 	"sort"
 	"sync/atomic"
 
-	"github.com/lxn/win"
+	"github.com/tailscale/win"
 
 	"github.com/amnezia-vpn/amneziawg-windows-client/manager"
 	"github.com/amnezia-vpn/amneziawg-windows/conf"
 
-	"github.com/lxn/walk"
+	"github.com/tailscale/walk"
 )
 
 // ListModel is a struct to store the currently known tunnels to the GUI, suitable as a model for a walk.TableView.

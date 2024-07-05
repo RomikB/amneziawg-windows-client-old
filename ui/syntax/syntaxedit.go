@@ -13,8 +13,8 @@ import (
 	"syscall"
 	"unsafe"
 
-	"github.com/lxn/walk"
-	"github.com/lxn/win"
+	"github.com/tailscale/walk"
+	"github.com/tailscale/win"
 	"golang.org/x/sys/windows"
 )
 

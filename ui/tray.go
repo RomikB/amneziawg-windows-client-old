@@ -13,7 +13,7 @@ import (
 	"github.com/amnezia-vpn/amneziawg-windows-client/manager"
 	"github.com/amnezia-vpn/amneziawg-windows/conf"
 
-	"github.com/lxn/walk"
+	"github.com/tailscale/walk"
 )
 
 // Status + active CIDRs + separator
@@ -42,7 +42,7 @@ func NewTray(mtw *ManageTunnelsWindow) (*Tray, error) {
 		tunnels: make(map[string]*walk.Action),
 	}
 
-	tray.NotifyIcon, err = walk.NewNotifyIcon(mtw)
+	tray.NotifyIcon, err = walk.NewNotifyIcon()
 	if err != nil {
 		return nil, err
 	}
@@ -124,6 +124,7 @@ func (tray *Tray) Dispose() error {
 }
 
 func (tray *Tray) onTunnelsChange() {
+	showErrorCustom(tray.mtw, "onTunnelsChange", "1")
 	tunnels, err := manager.IPCClientTunnels()
 	if err != nil {
 		return
@@ -261,14 +262,18 @@ func (tray *Tray) onTunnelChange(tunnel *manager.Tunnel, state, globalState mana
 				switch state {
 				case manager.TunnelStarted:
 					if !wasChecked {
-						icon, _ := iconWithOverlayForState(state, 128)
+						//icon, _ := iconWithOverlayForState(state, 128)
+						icon, _ := walk.NewIconFromResourceId(7)
+						//_ = icon
 						tray.ShowCustom(l18n.Sprintf("AmneziaWG Activated"), l18n.Sprintf("The %s tunnel has been activated.", tunnel.Name), icon)
+						//tray.ShowWarning(l18n.Sprintf("AmneziaWG Activated"), l18n.Sprintf("The %s tunnel has been activated.", tunnel.Name))
 					}
 
 				case manager.TunnelStopped:
 					if wasChecked {
 						icon, _ := loadSystemIcon("imageres", -31, 128) // TODO: this icon isn't very good...
-						tray.ShowCustom(l18n.Sprintf("AmneziaWG Deactivated"), l18n.Sprintf("The %s tunnel has been deactivated.", tunnel.Name), icon)
+						_ = icon
+						tray.ShowCustom(l18n.Sprintf("AmneziaWG Deactivated"), l18n.Sprintf("The %s tunnel has been deactivated.", tunnel.Name), nil)
 					}
 				}
 			}

@@ -8,7 +8,7 @@ package ui
 import (
 	"os"
 
-	"github.com/lxn/walk"
+	"github.com/tailscale/walk"
 
 	"github.com/amnezia-vpn/amneziawg-windows-client/l18n"
 )
