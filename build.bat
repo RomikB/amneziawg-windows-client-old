@@ -46,10 +46,10 @@ if exist .deps\prepared goto :render
 
 :sign
 	if exist .\sign.bat call .\sign.bat
-	if "%SigningCertificate%"=="" goto :success
+	if "%SigningProvider%"=="" goto :success
 	if "%TimestampServer%"=="" goto :success
 	echo [+] Signing
-	signtool sign /sha1 "%SigningCertificate%" /fd sha256 /tr "%TimestampServer%" /td sha256 /d WireGuard x86\amneziawg.exe x86\awg.exe amd64\amneziawg.exe amd64\awg.exe arm64\amneziawg.exe arm64\awg.exe || goto :error
+	signtool sign %SigningProvider% /fd sha256 /tr "%TimestampServer%" /td sha256 /d WireGuard x86\amneziawg.exe x86\awg.exe amd64\amneziawg.exe amd64\awg.exe arm64\amneziawg.exe arm64\awg.exe || goto :error
 
 :success
 	echo [+] Success. Launch amneziawg.exe.

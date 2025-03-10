@@ -680,7 +680,7 @@
         {
             "id": "♥ &Donate!",
             "message": "♥ &Donate!",
-            "translation": "♥ a Darovat!",
+            "translation": "♥ &Darovat!",
             "translatorComment": "Copied from source."
         },
         {
@@ -692,13 +692,13 @@
         {
             "id": "&Deactivate",
             "message": "&Deactivate",
-            "translation": "a Deaktivovať",
+            "translation": "&Deaktivovať",
             "translatorComment": "Copied from source."
         },
         {
             "id": "&Activate",
             "message": "&Activate",
-            "translation": "a Aktivovať",
+            "translation": "&Aktivovať",
             "translatorComment": "Copied from source."
         },
         {
@@ -1822,6 +1822,86 @@
             "message": "Status: Complete!",
             "translation": "Stav: Dokončené!",
             "translatorComment": "Copied from source."
+        },
+        {
+            "id": "http2: Framer {F}: failed to decode just-written frame",
+            "message": "http2: Framer {F}: failed to decode just-written frame",
+            "translation": "http2: Framer {F}: failed to decode just-written frame",
+            "translatorComment": "Copied from source.",
+            "placeholders": [
+                {
+                    "id": "F",
+                    "string": "%[1]p",
+                    "type": "*net/http.http2Framer",
+                    "underlyingType": "*net/http.http2Framer",
+                    "argNum": 1,
+                    "expr": "f"
+                }
+            ]
+        },
+        {
+            "id": "http2: Framer {F}: wrote {Http2summarizeFramefr}",
+            "message": "http2: Framer {F}: wrote {Http2summarizeFramefr}",
+            "translation": "http2: Framer {F}: wrote {Http2summarizeFramefr}",
+            "translatorComment": "Copied from source.",
+            "placeholders": [
+                {
+                    "id": "F",
+                    "string": "%[1]p",
+                    "type": "*net/http.http2Framer",
+                    "underlyingType": "*net/http.http2Framer",
+                    "argNum": 1,
+                    "expr": "f"
+                },
+                {
+                    "id": "Http2summarizeFramefr",
+                    "string": "%[2]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 2,
+                    "expr": "http2summarizeFrame(fr)"
+                }
+            ]
+        },
+        {
+            "id": "http2: Framer {Fr}: read {Http2summarizeFramef}",
+            "message": "http2: Framer {Fr}: read {Http2summarizeFramef}",
+            "translation": "http2: Framer {Fr}: read {Http2summarizeFramef}",
+            "translatorComment": "Copied from source.",
+            "placeholders": [
+                {
+                    "id": "Fr",
+                    "string": "%[1]p",
+                    "type": "*net/http.http2Framer",
+                    "underlyingType": "*net/http.http2Framer",
+                    "argNum": 1,
+                    "expr": "fr"
+                },
+                {
+                    "id": "Http2summarizeFramef",
+                    "string": "%[2]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 2,
+                    "expr": "http2summarizeFrame(f)"
+                }
+            ]
+        },
+        {
+            "id": "http2: decoded hpack field {HeaderField}",
+            "message": "http2: decoded hpack field {HeaderField}",
+            "translation": "http2: decoded hpack field {HeaderField}",
+            "translatorComment": "Copied from source.",
+            "placeholders": [
+                {
+                    "id": "HeaderField",
+                    "string": "%+[1]v",
+                    "type": "vendor/golang.org/x/net/http2/hpack.HeaderField",
+                    "underlyingType": "struct{Name string; Value string; Sensitive bool}",
+                    "argNum": 1,
+                    "expr": "hf"
+                }
+            ]
         }
     ]
 }
